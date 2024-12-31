@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Something</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: black; /* Default background */
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.5s ease; /* Smooth background transition */
+        }
+
+        /* Glowing Button */
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            outline: none;
+            color: aliceblue;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            border-radius: 12px;
+            background-color: #6B7280;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        .btn::after {
+            content: "";
+            z-index: -1;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #6B7280;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+        }
+
+        .btn::before {
+            content: "";
+            background: linear-gradient(
+                45deg,
+                #6B7280, #EF4444, #F59E0B, #10B981,
+                #3B82F6, #6366F1, #8B5CF6, #EC4899
+            );
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 600%;
+            z-index: -1;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            filter: blur(4px);
+            transition: opacity 0.3s ease-in-out;
+            border-radius: 10px;
+            opacity: 0;
+            animation: glowing 20s linear infinite;
+        }
+
+        @keyframes glowing {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        /* Wish Design */
+        .wish-container {
+            display: none; /* Hidden by default */
+            text-align: center;
+            color: #333;
+        }
+
+        .wish-container h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #2C3E50;
+        }
+
+        .wish-container p {
+            font-size: 1.5em;
+            color: #34495E;
+        }
+
+        /* Image Styling */
+        .wish-container img {
+            width: 100%;
+            max-width: 300px;  /* Ensure the image doesn't get too large */
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Glowing Button -->
+    <button class="btn" id="glowButton" onclick="showWish()">Click to Reveal Something!</button>
+
+    <!-- New Year Wish -->
+    <div class="wish-container" id="wishContainer">
+        <h1>🎉 Happy New Year 2025! 🎉</h1>
+        <p>May your year be filled with joy, success, and good health! 🥳✨</p>
+        <img src="PHOTO-2024-11-29-19-05-40.jpg" alt="A girl licking ice cream">
+    </div>
+
+    <script>
+        function showWish() {
+            const button = document.getElementById('glowButton');
+            const wishContainer = document.getElementById('wishContainer');
+            const body = document.body;
+
+            // Hide the button
+            button.style.display = 'none';
+
+            // Change the background to white
+            body.style.backgroundColor = '#FFFFFF';
+
+            // Show the wish
+            wishContainer.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
